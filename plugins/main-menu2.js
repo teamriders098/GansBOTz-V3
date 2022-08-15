@@ -3,44 +3,38 @@ let fs = require('fs')
 let path = require('path')
 let levelling = require('../lib/levelling')
 let tags = {
-  'rpgabsen': '𝗥𝗣𝗚-𝗔𝗕𝗦𝗘𝗡',
-  'rpg': '𝗥𝗣𝗚',
-  'game': '𝗚𝗔𝗠𝗘',
-  'xp': '𝗘𝗫𝗣-𝗟𝗜𝗠𝗜𝗧',
-  'asupan': '𝗔𝗦𝗨𝗣𝗔𝗡',
-  'sticker': '𝗦𝗧𝗜𝗖𝗞𝗘𝗥',
-  'main': '𝗠𝗔𝗜𝗡',
-  'kerang': '𝗞𝗘𝗥𝗔𝗡𝗚 𝗠𝗘𝗡𝗨',
-  'quotes': '𝗤𝗨𝗢𝗧𝗘𝗦',
-  'group': '𝗚𝗥𝗨𝗣-𝗠𝗘𝗡𝗨',
-  'internet': '𝗜𝗡𝗧𝗘𝗥𝗡𝗘𝗧',
-  'anonymous': '𝗔𝗡𝗢𝗡𝗬𝗠𝗢𝗨𝗦',
-  'downloader': '𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗥',
-  'berita': '𝗕𝗘𝗥𝗜𝗧𝗔',
-  'tools': '𝗧𝗢𝗢𝗟𝗦',
-  'nsfw': '𝗡𝗦𝗙𝗪',
-  'fun': '𝗙𝗨𝗡-𝗠𝗘𝗡𝗨',
-  'anime': '𝗔𝗡𝗜𝗠𝗘 𝗠𝗘𝗡𝗨',
-  'vote': '𝗩𝗢𝗧𝗜𝗡𝗚-𝗠𝗘𝗡𝗨',
-  'absen': '𝗔𝗕𝗦𝗘𝗡',
-  'catatan': '𝗖𝗔𝗧𝗔𝗧𝗔𝗡',
-  'jadian': '𝗝𝗔𝗗𝗜𝗔𝗡',
-  'islami': '𝗜𝗦𝗟𝗔𝗠𝗜',
-  'owner': '𝗢𝗪𝗡𝗘𝗥-𝗠𝗘𝗡𝗨',
-  'advanced': '𝗞𝗛𝗨𝗦𝗨𝗦',
-  'info': '𝗜𝗡𝗙𝗢',
-  'audio': '𝗔𝗨𝗗𝗜𝗢',
-  'maker': '𝗠𝗔𝗞𝗘𝗥',
+  'main': '*MENU UTAMA*',
+  'advanced': '*ADVANCED*',
+  'rpg': '*MENU RPG*',
+  'anime': '*MENU ANIME*',
+  'sticker': '*MENU CONVERT*',
+  'downloader': '*MENU DOWNLOADER*',
+  'xp': '*MENU EXP*',
+  'fun': '*MENU FUN*',
+  'game': '*MENU GAME*',
+  'github': '*MENU GITHUB*',
+  'group': '*MENU GROUP*',
+  'image': '*MENU IMAGE*',
+  'info': '*MENU INFO*',
+  'absen': '*MENU ABSEN*',
+  'internet': '*INTERNET*',
+  'islam' : '*MENU ISLAMI*',
+  'kerang': '*MENU KERANG*',
+  'maker': '*MENU MAKER*',
+  'owner': '*MENU OWNER*',
+  'quotes' : '*MENU QUOTES*',
+  'stalk': '*MENU STALK*',
+  'tools': '*MENU TOOLS*',
 }
-let iggw = `https://instagram.com/b4c00t.dtz`
-let own = `https://wa.me/6289509960601`
+let iggw = `https://instagram.com/hyuura_ofc`
+let own = `https://wa.me/6281361281833`
 
 const defaultMenu = {
   before: `
 %readmore`.trimStart(),
-  header: '⃝▣──「 %category 」───⬣',
-  body: '│ ○ %cmd %islimit %isPremium',
-  footer: '▣────────────⬣\n',
+  header: '⳼────❪ %category ❫\n┃╭─❏ ',
+  body: '┃│❖ %cmd %islimit %isPremium',
+  footer: '┃╰───────────────❏\n✇────✪\n',
   after: `
 *%npmname@^%version*
 ${'```%npmdesc```'}
@@ -57,7 +51,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
     let name = conn.getName(m.sender)
     let d = new Date(new Date + 3600000)
-    let locale = 'id'
+let locale = 'id'
     // d.getTimeZoneOffset()
     // Offset -420 is 18.00
     // Offset    0 is  0.00
@@ -146,33 +140,34 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    
-    const menu2nih = `
-\`\`\`╭───❏ *❲* INFO USER* ❳\`\`\`
-\`\`\`│┏✗ *𝙽𝚊𝚖𝚎* : ${name}\`\`\`
-\`\`\`│┣✗ *𝙻𝚒𝚖𝚒𝚝* : ${limit}\`\`\`
-\`\`\`│┣✗ *𝙻𝚎𝚟𝚎𝚕* : ${level}\`\`\`
-\`\`\`│┣✗ *𝙴𝚡𝚙*   : ${exp}\`\`\`
-\`\`\`│┗✗ *𝚁𝚘𝚕𝚎*   : ${role}\`\`\`
-\`\`\`╰──────────────◩\`\`\`
-\`\`\`╭───❏ *❲* INFO BOT* ❳\`\`\`
-\`\`\`│┏✗ *Bot Name:* ${global.namabot}\`\`\`
-\`\`\`│┣✗ *Lib*: Baileys-MD\`\`\`
-\`\`\`│┣✗ *${Object.keys(global.db.data.users).length}* *Pengguna*\`\`\`
-\`\`\`│┣✗ *Prefix:* Multi\`\`\`
-\`\`\`│┣✗ *Uptime:* ${uptime}\`\`\`
-\`\`\`│┣✗ *Mode:* ${global.opts['self'] ? 'Self' : 'publik'}\`\`\`
-\`\`\`│┣✗ *${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}* *Chat Terbanned*\`\`\`
-\`\`\`│┣✗ *${Object.entries(global.db.data.users).filter(user => user[1].banned).length}* Pengguna Terbanned\`\`\`
-\`\`\`│┗✗ *Database:* ${rtotalreg}\`\`\`
-\`\`\`╰──────────────◩\`\`\``
+    let audio = `https://raw.githubusercontent.com/hyuura/Rest-Sound/main/HyuuraKane/mangkane22.mp3`
+    await conn.sendFile(m.chat, audio, 'error.mp3', null, m, true)
+    const menu2nih = `Hai ${name}`
      const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
      templateMessage: {
          hydratedTemplate: {
            hydratedContentText: menu2nih.trim(),
            locationMessage: { 
            jpegThumbnail: fs.readFileSync('./src/welcome.jpg') },
-           hydratedFooterText: `⃝▣──「 *INFO CMD* 」───⬣\n│ *Ⓟ* = Premium\n│ *Ⓛ* = Limit\n▣────────────⬣`,
+           hydratedFooterText: `
+╭───❏ *❲* INFO USER* ❳
+│┏✗ *𝙽𝚊𝚖𝚎* : ${name}
+│┣✗ *𝙻𝚒𝚖𝚒𝚝* : ${limit}
+│┣✗ *𝙻𝚎𝚟𝚎𝚕* : ${level}
+│┣✗ *𝙴𝚡𝚙*   : ${exp}
+│┗✗ *𝚁𝚘𝚕𝚎*   : ${role}
+╰──────────────◩
+╭───❏ *❲* INFO BOT* ❳
+│┏✗ *Bot Name:* ${global.namabot}
+│┣✗ *Lib*: Baileys-MD
+│┣✗ *${Object.keys(global.db.data.users).length}* *Pengguna*
+│┣✗ *Prefix:* Multi
+│┣✗ *Uptime:* ${uptime}
+│┣✗ *Mode:* ${global.opts['self'] ? 'Self' : 'publik'}
+│┣✗ *${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}* *Chat Terbanned*
+│┣✗ *${Object.entries(global.db.data.users).filter(user => user[1].banned).length}* Pengguna Terbanned
+│┗✗ *Database:* ${rtotalreg}
+╰──────────────◩`,
            hydratedButtons: [{
              urlButton: {
                displayText: '📍Instagram',
@@ -189,26 +184,26 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
            },
            {
              quickReplyButton: {
-               displayText: 'ＭＥＮＵ',
-               id: '.listmenu',
-             },
+               displayText: 'Ｏｗｎｅｒ',
+               id: '.owner',
+             }
+           },          
            {
              quickReplyButton: {
                displayText: 'ｒｕｌｅｓ',
                id: '.rules',
-               },
+                }
+           },          
            {
              quickReplyButton: {
-               displayText: 'Ｏｗｎｅｒ',
-               id: '.owner',
-               }
+               displayText: 'ＭＥＮＵ',
+               id: '.listmenu',
+             }
            }]
          }
        }
      }), { userJid: m.sender, quoted: m });
     //conn.reply(m.chat, text.trim(), m)
-   let audio = fs.readFileSync('./mp3/Play-Date-Melanie-Martinez-Cover-by-邢凯悦XKY.opus')
-   await conn.sendFile(m.chat, audio, 'error.mp3', null, m, true)
     return await conn.relayMessage(
          m.chat,
          template.message,
@@ -220,9 +215,9 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
   }
  
 }
-handler.help = ['menu','m']
+handler.help = ['menu','m','help']
 handler.tags = ['main']
-handler.command = /^(menu|m)$/i
+handler.command = /^(menu|m|menuh)$/i
 handler.owner = false
 handler.mods = false
 handler.premium = false
@@ -245,22 +240,4 @@ function clockString(ms) {
   let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
-}
-function ucapan() {
-        const hour_now = moment.tz('Asia/Jakarta').format('HH')
-        var ucapanWaktu = 'Pagi kak'
-        if (hour_now >= '03' && hour_now <= '10') {
-          ucapanWaktu = 'Siang kak'
-        } else if (hour_now >= '10' && hour_now <= '15') {
-          ucapanWaktu = 'Sore kak'
-        } else if (hour_now >= '15' && hour_now <= '17') {
-          ucapanWaktu = 'Sore kak'
-        } else if (hour_now >= '17' && hour_now <= '18') {
-          ucapanWaktu = 'Selamat Malam kak'
-        } else if (hour_now >= '18' && hour_now <= '23') {
-          ucapanWaktu = 'Malam kak'
-        } else {
-          ucapanWaktu = 'Selamat Malam!'
-        }	
-        return ucapanWaktu
 }
